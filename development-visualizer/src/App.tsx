@@ -3,7 +3,7 @@ import Data from './assets/MockData.json'
 
 // Components
 import TableView from './components/TableView'
-
+import SearchBar from './components/SearchBar'
 
 // String array for table column headers.
 const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "Start Date", "Methodology"]
@@ -17,9 +17,7 @@ function App() {
       <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>
       </section>
-      <section className='search-bar'>
-        <h2>Search Bar</h2>
-      </section>
+     <SearchBar />
       <section>
         <section className='total-add'>
           <h3>Total: </h3>
