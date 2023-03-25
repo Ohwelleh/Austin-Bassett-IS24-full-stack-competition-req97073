@@ -4,11 +4,11 @@
         "productName": "Test Product 1",
         "productOwnerName": "Dave Checker",
         "Developers": [
-         "NAME_1",
-         "NAME_2",
-         "NAME_3",
-         "NAME_4",
-         "NAME_5"
+         "Celsus Juliana",
+         "Ambroos Hari",
+         "Burkhart Ben",
+         "Wayland Evangelista",
+         "Peter Tikva"
         ],
         "scrumMasterName": "John Two",
         "startDate": "2023/03/24",
@@ -19,11 +19,23 @@
         "productName": "Test Prodwwuct 1",
         "productOwnerName": "Dave Checkewr",
         "Developers": [
-         "NAME_1",
-         "NAME_2",
-         "NAME_3ee",
-         "NAME_4",
-         "NAME_5"
+         "Albin Eurpraxia",
+         "Tyche Mirabelle",
+         "Umukoro Rava",
+         "Godfried Ritika",
+         "Katinka Coraline"
+        ],
+        "scrumMasterName": "John Two",
+        "startDate": "2023/03/24",
+        "methodology": "Agile"
+    },
+    {
+        "productId":3,
+        "productName": "Test Prodwwuct 1",
+        "productOwnerName": "Dave Checkewr",
+        "Developers": [
+         "Albin Smith",
+         "Coraline Mirabelle"
         ],
         "scrumMasterName": "John Two",
         "startDate": "2023/03/24",

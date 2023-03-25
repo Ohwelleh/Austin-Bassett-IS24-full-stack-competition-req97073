@@ -1,41 +1,31 @@
-import './App.css'
+import './styling/App.css'
 import Data from './assets/MockData.json'
 
-const TableHeader = ["Product Name", "Owner", "Developers", "Scrum Master", "Start Date", "Methodology"]
+// Components
+import TableView from './components/TableView'
+
+
+// String array for table column headers.
+const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "Start Date", "Methodology"]
+
+
 
 function App() {
 
-
   return (
     <div>
-      <section>
+      <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>
       </section>
-      <section>
+      <section className='search-bar'>
         <h2>Search Bar</h2>
       </section>
       <section>
-        <section>
+        <section className='total-add'>
           <h3>Total: </h3>
-          <h3>Add</h3>
+          <button>Add</button>
         </section>
-        <table>
-          <tr>
-            {TableHeader.map((value, index) =>(
-              <th key={index} >{value}</th>
-            ))}
-          </tr>
-          {Data.map((dataInfo, index) =>(
-            <tr key={index}>
-              <td>{dataInfo.productName}</td>
-              <td>{dataInfo.productOwnerName}</td>
-              <td>{dataInfo.Developers}</td>
-              <td>{dataInfo.scrumMasterName}</td>
-              <td>{dataInfo.startDate}</td>
-              <td>{dataInfo.methodology}</td>
-            </tr>
-          ))}
-        </table>
+        <TableView TableHeader={TableHeaders}/>
       </section>
     </div>
   )
