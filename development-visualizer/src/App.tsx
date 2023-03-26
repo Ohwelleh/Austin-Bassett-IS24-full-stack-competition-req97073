@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { IEntry } from './assets/Interfaces'
 
 
 // Styling
@@ -16,7 +17,8 @@ const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "St
 
 function App() {
 
-  const [entries, setEntries] = useState<any>([])
+  const [entries, setEntries] = useState<IEntry[] | []>([])
+  const [search, setSearches] = useState<IEntry[] | undefined>(undefined)
 
   useEffect(() =>{
     async function getProducts(){
@@ -31,6 +33,7 @@ function App() {
       setEntries(productJSON)
 
     }
+
       getProducts()
       return
 
@@ -41,10 +44,10 @@ function App() {
       <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>
       </section>
-     <SearchBar />
+     <SearchBar searchArray={setSearches} completeData={entries} />
       <section>
-        <TotalAdd />
-        <TableView TableHeader={TableHeaders}/>
+        <TotalAdd searchResults={search} completeData={entries} />
+        <TableView tableHeader={TableHeaders} tableData={entries}/>
       </section>
     </div>
   )

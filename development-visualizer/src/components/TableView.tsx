@@ -1,19 +1,21 @@
 import Data from '../assets/MockData.json'
 import '../styling/TableViewStyles.css'
 
+import { IEntry } from '../assets/Interfaces'
+
 const test = ["one", "two"]
 
-function TableView({TableHeader}: {TableHeader: string[]}){
+function TableView({tableHeader, tableData}: {tableHeader: string[], tableData: IEntry[]}){
     return (
         <section>
             <table>
                 <tbody>
                 <tr>
-                    {TableHeader.map((value, index) =>(
+                    {tableHeader.map((value, index) =>(
                     <th key={index} >{value}</th>
                     ))}
                 </tr>
-            {Data.map ((dataInfo, index) =>(
+            {tableData.map ((dataInfo, index) =>(
                 <tr key={index}>
                     <td>{dataInfo.productName}</td>
                     <td>{dataInfo.productOwnerName}</td>
