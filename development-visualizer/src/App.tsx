@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react'
+
+
+// Styling
 import './styling/App.css'
 import Data from './assets/MockData.json'
 
@@ -10,8 +14,27 @@ import TotalAdd from './components/TotalAdd'
 const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "Start Date", "Methodology"]
 
 
-
 function App() {
+
+  const [entries, setEntries] = useState<any>([])
+
+  useEffect(() =>{
+    async function getProducts(){
+      const response = await fetch('http://localhost:3000/api/products')
+      if(!response.ok){
+        const message = `An error occured ${response.statusText}`
+        window.alert(message)
+        return
+      }
+
+      const productJSON = await response.json()
+      setEntries(productJSON)
+
+    }
+      getProducts()
+      return
+
+  }, [entries.length])
 
   return (
     <div>
