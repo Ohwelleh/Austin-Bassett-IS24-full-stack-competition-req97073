@@ -1,4 +1,5 @@
 const productRoutes = require('./products')
+const healthRoutes = require('./healthchecker')
 
 const appRouter = (app, fs) => {
     app.get('/api', (req, res) =>{
@@ -6,6 +7,7 @@ const appRouter = (app, fs) => {
     })
 
     productRoutes(app, fs)
+    healthRoutes(app)
 }
 
 module.exports = appRouter

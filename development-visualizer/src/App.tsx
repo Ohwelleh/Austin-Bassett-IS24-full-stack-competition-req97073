@@ -18,7 +18,7 @@ const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "St
 function App() {
 
   const [entries, setEntries] = useState<IEntry[] | []>([])
-  const [search, setSearches] = useState<IEntry[] | undefined>(undefined)
+  const [search, setSearches] = useState<IEntry[]>([])
 
   useEffect(() =>{
     async function getProducts(){
@@ -31,6 +31,7 @@ function App() {
 
       const productJSON = await response.json()
       setEntries(productJSON)
+      setSearches(productJSON)
 
     }
 
@@ -47,7 +48,7 @@ function App() {
      <SearchBar searchArray={setSearches} completeData={entries} />
       <section>
         <TotalAdd searchResults={search} completeData={entries} />
-        <TableView tableHeader={TableHeaders} tableData={entries}/>
+        <TableView tableHeader={TableHeaders} tableData={search}/>
       </section>
     </div>
   )
