@@ -16,7 +16,7 @@ function TableView({tableHeader, tableData}: {tableHeader: string[], tableData: 
                     ))}
                 </tr>
             {tableData.map ((dataInfo, index) =>(
-                <tr key={index}>
+                <tr key={dataInfo.productId}>
                     <td>{dataInfo.productName}</td>
                     <td>{dataInfo.productOwnerName}</td>
                     <td>{dataInfo.Developers.map((name, index) =>(<p>{name}</p>))}</td>

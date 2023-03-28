@@ -6,6 +6,16 @@ const app = express()
 
 const fs = require('fs')
 
+
+function ignoreFavIcon(req, res, next){
+    if(req.originalUrl.includes('favicon.ico')){
+        res.status(204).end()
+    }
+    next()
+}
+
+app.use(ignoreFavIcon)
+
 app.use(cors())
 
 app.use(bodyParser.json())
