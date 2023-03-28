@@ -7,3 +7,8 @@ export interface IEntry{
     startDate: string,
     methodology: string
 }
+
+export interface IFormInfo{
+    visible: boolean,
+    editOrAdd: string
+}

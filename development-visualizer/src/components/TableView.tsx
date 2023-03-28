@@ -1,11 +1,16 @@
-import Data from '../assets/MockData.json'
+import { SetStateAction, Dispatch } from 'react'
 import '../styling/TableViewStyles.css'
 
-import { IEntry } from '../assets/Interfaces'
+import { IEntry, IFormInfo } from '../assets/Interfaces'
 
-const test = ["one", "two"]
 
-function TableView({tableHeader, tableData}: {tableHeader: string[], tableData: IEntry[]}){
+function handleOnClick(formSet: Dispatch<SetStateAction<IFormInfo>>, productSet: Dispatch<SetStateAction<IEntry | undefined>>, currentProduct: IEntry){
+    formSet({visible: true, editOrAdd: "edit"})
+    productSet(currentProduct)
+}
+
+function TableView({tableHeader, tableData, formSettingInfo, productSetInfo}: {tableHeader: string[], tableData: IEntry[], formSettingInfo: Dispatch<SetStateAction<IFormInfo>>, productSetInfo: Dispatch<SetStateAction<IEntry | undefined>>}){
+
     return (
         <section>
             <table>
@@ -23,7 +28,7 @@ function TableView({tableHeader, tableData}: {tableHeader: string[], tableData: 
                     <td>{dataInfo.scrumMasterName}</td>
                     <td>{dataInfo.startDate}</td>
                     <td>{dataInfo.methodology}</td>
-                    <td><button>Edit</button></td>
+                    <td><button key={dataInfo.productId} onClick={() => handleOnClick(formSettingInfo, productSetInfo, dataInfo)}>Edit</button></td>
                 </tr>
             ))} 
             </tbody>

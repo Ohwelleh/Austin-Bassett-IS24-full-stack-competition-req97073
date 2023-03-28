@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { IEntry } from './assets/Interfaces'
+import { IEntry, IFormInfo } from './assets/Interfaces'
 
 
 // Styling
@@ -10,15 +10,22 @@ import Data from './assets/MockData.json'
 import TableView from './components/TableView'
 import SearchBar from './components/SearchBar'
 import TotalAdd from './components/TotalAdd'
+import ProductForm from './components/ProductForm'
 
 // String array for table column headers.
 const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "Start Date", "Methodology"]
 
+const initialForm: IFormInfo ={
+  visible: false,
+  editOrAdd: "edit"
+}
 
 function App() {
 
   const [entries, setEntries] = useState<IEntry[] | []>([])
   const [search, setSearches] = useState<IEntry[]>([])
+  const [formInfo, setFormInfo] = useState<IFormInfo>(initialForm)
+  const [changeProductData, setNewProductData] = useState<IEntry | undefined>(undefined)
 
   useEffect(() =>{
     async function getProducts(){
@@ -42,14 +49,15 @@ function App() {
 
   return (
     <div>
-      <section className='landing-title'>
+      {formInfo.visible && <ProductForm formSettingInfo={setFormInfo} formData={formInfo} productInfo={changeProductData}/>}
+      {!formInfo.visible && <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>
-      </section>
-     <SearchBar searchArray={setSearches} completeData={entries} />
-      <section>
-        <TotalAdd searchResults={search} completeData={entries} />
-        <TableView tableHeader={TableHeaders} tableData={search}/>
-      </section>
+      </section>}
+     {!formInfo.visible && <SearchBar searchArray={setSearches} completeData={entries} />}
+      {!formInfo.visible && <section>
+        <TotalAdd searchResults={search} completeData={entries} formSettingInfo={setFormInfo} productSetInfo={setNewProductData}/>
+        <TableView tableHeader={TableHeaders} tableData={search} formSettingInfo={setFormInfo} productSetInfo={setNewProductData}/>
+      </section>}
     </div>
   )
 }
