@@ -85,22 +85,14 @@ const productRoutes = (app, fs) =>{
 
             if(err){ res.status(404).send('Not Found')}
 
-            var products = new Map()
             const dataConv = JSON.parse(data)
+            let currentPID = Number(req.params['prodID'])
+            const newData = dataConv.filter((id) => id.productId !== currentPID)
 
-            for(entry of dataConv){
-                products.set(Number(entry.productId), entry)
-            }
-
-            const results = products.get(Number(req.params['prodID']))
-
-            if(results === undefined){res.status(404).send('Not Found')}
-
-            products.delete(Number(req.params['prodID']))
             
-            fs.writeFile(dataPath, JSON.stringify(products, null, 2), 'utf8', () =>{
+            fs.writeFile(dataPath, JSON.stringify(newData, null, 2), 'utf8', () =>{
                 if(err){throw err}
-                res.status(200).send(`Product id:${req.params['prodID']} removed`)
+                res.status(200).send(`Product id: ${req.params['prodID']} was deleted`)
             })
         })
     })
