@@ -1,55 +1,56 @@
 [
-    {
-        "productId":1,
-        "productName": "Data Product 1",
-        "productOwnerName": "Dave Checker",
-        "Developers": [
-         "Celsus Juliana",
-         "Ambroos Hari",
-         "Burkhart Ben",
-         "Wayland Evangelista",
-         "Peter Tikva"
-        ],
-        "scrumMasterName": "Mark Smith",
-        "startDate": "2023/03/24",
-        "methodology": "Agile"
-    },
-    {
-        "productId":2,
-        "productName": "Data Testing",
-        "productOwnerName": "Dave Checkewr",
-        "Developers": [
-         "Albin Eurpraxia",
-         "Tyche Mirabelle",
-         "Umukoro Rava",
-         "Godfried Ritika",
-         "Katinka Coraline"
-        ],
-        "scrumMasterName": "John Two",
-        "startDate": "2023/01/24",
-        "methodology": "Waterfall"
-    },
-    {
-        "productId":3,
-        "productName": "Data Testing",
-        "productOwnerName": "Dave Checkewr",
-        "Developers": [
-         "Albin Smith",
-         "Coraline Mirabelle"
-        ],
-        "scrumMasterName": "Mark Smith",
-        "startDate": "2023/02/24",
-        "methodology": "Agile"
-    },
-    {
-        "productId":4,
-        "productName": "Data Testing",
-        "productOwnerName": "Dave Checkewr",
-        "Developers": [
-         "Albin Smith"
-        ],
-        "scrumMasterName": "Alice Goodie",
-        "startDate": "2023/03/24",
-        "methodology": "Agile"
-    }
+  {
+    "productId": 1,
+    "productName": "Data Product 1",
+    "productOwnerName": "Dave Checker",
+    "Developers": [
+      "Celsus Juliana",
+      "Ambroos Hari",
+      "Burkhart Ben",
+      "Wayland Evangelista",
+      "Peter Tikva"
+    ],
+    "scrumMasterName": "Mark Smith",
+    "startDate": "2023/03/24",
+    "methodology": "Agile"
+  },
+  {
+    "productId": 2,
+    "productName": "Data Testing",
+    "productOwnerName": "Dave Checkewr",
+    "Developers": [
+      "Albin Eurpraxia",
+      "Tyche Mirabelle",
+      "Umukoro Rava",
+      "Godfried Ritika",
+      "Katinka Coraline"
+    ],
+    "scrumMasterName": "John Two",
+    "startDate": "2023/01/24",
+    "methodology": "Waterfall"
+  },
+  {
+    "productId": 3,
+    "productName": "Data Testing",
+    "productOwnerName": "Dave Checkewr",
+    "Developers": [
+      "Albin Smith",
+      "Coraline Mirabelle"
+    ],
+    "scrumMasterName": "Mark Smith",
+    "startDate": "2023/02/24",
+    "methodology": "Agile"
+  },
+  {
+    "productId": 4,
+    "productName": "Data Testing",
+    "productOwnerName": "Dave Checkewr",
+    "Developers": [
+      "Albin Smith",
+      "Becky"
+    ],
+    "scrumMasterName": "Patrick",
+    "startDate": "2023/03/24",
+    "methodology": "Agile"
+  }
 ]

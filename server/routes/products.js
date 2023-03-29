@@ -13,7 +13,7 @@ const productRoutes = (app, fs) =>{
 
             if(err){ res.status(404).send('Not Found')}
 
-            var products = new Map()
+            const products = new Map()
             const dataConv = JSON.parse(data)
 
             for(entry of dataConv){
@@ -28,32 +28,59 @@ const productRoutes = (app, fs) =>{
         })
     })
     
-    app.put('/api/products/:prodID', (req, res) =>{
+    app.post('/api/products/add', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
-
-            if(err){ res.status(404).send('Not Found')}
-
-            var products = new Map()
-            const dataConv = JSON.parse(data)
-
-            for(entry of dataConv){
-                products.set(Number(entry.productId), entry)
+            
+            let newProduct = {
+                productId: req.body.productId,
+                productName: req.body.productName,
+                productOwnerName: req.body.productOwnerName,
+                Developers: req.body.Developers.filter(item => item),
+                scrumMasterName: req.body.scrumMasterName,
+                startDate: req.body.startDate,
+                methodology: req.body.methodology
             }
 
-            const results = products.get(Number(req.params['prodID']))
-
-            if(results === undefined){res.status(404).send('Not Found')}
-
-            products.set(Number(req.params['prodID']), JSON.parse(req.body))
+            const dataObj = JSON.parse(data)
+            dataObj.push(newProduct)
             
-            fs.writeFile(dataPath, JSON.stringify(products, null, 2), 'utf8', () =>{
+            fs.writeFile(dataPath, JSON.stringify(dataObj, null, 2), 'utf8', () =>{
                 if(err){throw err}
-                res.status(200).send(`Product id:${req.params['prodID']} updated`)
+                res.status(200).send(`New product added`)
             })
         })
     })
 
-    app.delete('/api/products/:prodID', (req, res) =>{
+    app.put('/api/products/update/:prodID', (req, res) =>{
+        fs.readFile(dataPath, 'utf8', (err, data) =>{
+
+            if(err){ res.status(404).send('Starting Error: Not Found')}
+
+            let modifiedProduct = {
+                productId: req.body.productId,
+                productName: req.body.productName,
+                productOwnerName: req.body.productOwnerName,
+                Developers: req.body.Developers.filter(item => item),
+                scrumMasterName: req.body.scrumMasterName,
+                startDate: req.body.startDate,
+                methodology: req.body.methodology
+            }
+
+            const dataConv = JSON.parse(data)
+            const newData = [...dataConv]
+
+            let findPID = Number(req.body.productId)
+            let productIndex = dataConv.findIndex(id => id.productId === findPID)
+            newData[productIndex] = modifiedProduct
+            
+            fs.writeFile(dataPath, JSON.stringify(newData, null, 2), 'utf8', () =>{
+                if(err){throw err}
+                res.status(200).send(`Product id: ${req.params['prodID']} updated`)
+            })
+        })
+    })
+
+    app.delete('/api/products/delete/:prodID', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
 
             if(err){ res.status(404).send('Not Found')}
