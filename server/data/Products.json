@@ -27,7 +27,7 @@
         ],
         "scrumMasterName": "John Two",
         "startDate": "2023/01/24",
-        "methodology": "Agile"
+        "methodology": "Waterfall"
     },
     {
         "productId":3,

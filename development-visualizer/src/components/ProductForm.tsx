@@ -1,9 +1,12 @@
-import { SetStateAction, Dispatch, useState } from "react"
-import { IEntry, IFormInfo } from "../assets/Interfaces"
+import { SetStateAction, Dispatch, useState, useEffect } from "react"
+import { IEntry, IFormInfo} from "../assets/Interfaces"
 
 function ProductForm({formSettingInfo, formData, productInfo}: {formSettingInfo: Dispatch<SetStateAction<IFormInfo>>, formData: IFormInfo, productInfo: IEntry | undefined}){
     
     const [startProdDate, setProdStart] = useState<Date>(new Date())
+    
+    const [editingMode, setEditMode] = useState<boolean>(false)
+
     const developerNames: string[] = ["", "", "", "", ""]
     const [changedProduct, setChangeProduct] = useState<IEntry>({
             productId: productInfo === undefined ? 0 : productInfo.productId,
@@ -12,21 +15,20 @@ function ProductForm({formSettingInfo, formData, productInfo}: {formSettingInfo:
             Developers: [],
             scrumMasterName: "",
             startDate: productInfo === undefined ? "" : productInfo.startDate,
-            methodology: ""
+            methodology: productInfo === undefined ? "" : productInfo.methodology
     })
 
-    var checkAgile = false
-    var checkWaterFall = false
+    useEffect(() =>{
+    
+        if(productInfo !== undefined){
+            setChangeProduct(productInfo)
+        }
+    
+        setEditMode(formData.editOrAdd === "edit")
 
-    // To Do Add this into a useEffect because I think they are causing the issue.
-    // if(productInfo !== undefined){
-    //     setChangeProduct(productInfo)
-    //     if(productInfo.methodology === "Agile") checkAgile = true
-    //     if(productInfo.methodology === "Waterfall") checkWaterFall = true
 
-    // }
 
-    var editingMode = formData.editOrAdd === "edit"
+    }, [])
 
     async function onSubmit(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
@@ -81,11 +83,11 @@ function ProductForm({formSettingInfo, formData, productInfo}: {formSettingInfo:
             <label>
                 Enter Methodology:
                 <label>
-                    <input type="radio" defaultChecked={checkAgile} name="method" required/>
+                    <input type="radio" defaultChecked={changedProduct.methodology === "Agile"} name="method" required/>
                     Agile
                 </label>
                 <label>
-                    <input type="radio" defaultChecked={checkWaterFall} name="method"/>
+                    <input type="radio" defaultChecked={changedProduct.methodology === "Waterfall"} name="method"/>
                     Waterfall
                 </label>
             </label>
