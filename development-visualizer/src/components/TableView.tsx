@@ -1,6 +1,7 @@
 import { SetStateAction, Dispatch } from 'react'
 import '../styling/TableViewStyles.css'
 
+import DeleteProduct from './DeleteProduct'
 import { IEntry, IFormInfo } from '../assets/Interfaces'
 
 
@@ -28,7 +29,10 @@ function TableView({tableHeader, tableData, formSettingInfo, productSetInfo}: {t
                     <td>{dataInfo.scrumMasterName}</td>
                     <td>{dataInfo.startDate}</td>
                     <td>{dataInfo.methodology}</td>
-                    <td><button key={dataInfo.productId} onClick={() => handleOnClick(formSettingInfo, productSetInfo, dataInfo)}>Edit</button></td>
+                    <td>
+                        <DeleteProduct selectedProduct={dataInfo}/>
+                        <button key={dataInfo.productId} onClick={() => handleOnClick(formSettingInfo, productSetInfo, dataInfo)}>Edit</button>
+                    </td>
                 </tr>
             ))} 
             </tbody>
