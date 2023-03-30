@@ -1,3 +1,32 @@
-.devs-div{
-    word-wrap: break-word;
+.headerCol, .dataCol, .pnCol, .oCol, .devCol, .smCol, .sdCol{
+    padding-right: 1rem;
+}
+th{
+    font-size: 1.3rem;
+}
+
+.CTAbtns{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 3px;
+}
+
+.tableRows{
+    height: 4rem;
+}
+
+.tableRows:nth-child(odd){
+    background-color: gray;
+}
+
+.tableData{
+    width: 100%;
+}
+
+.pnCol, .oCol{
+    width: 13%;
+}
+
+.devCol{
+    width: 40%;
 }

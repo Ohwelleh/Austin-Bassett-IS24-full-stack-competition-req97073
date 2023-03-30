@@ -1,0 +1,59 @@
+.formBackground{
+    width: 43vw;
+    height: 65vh;
+    background-color:rgba(122, 10, 10, 0.9);
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    margin-left: -25vh;
+    z-index: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    border-radius: 20px;
+}
+
+.addForm input[type=text], .editForm input[type=text] {
+    height: 1.5rem;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.addForm input[type=radio], .editForm input[type=radio] {
+    margin-left: 10px;
+}
+
+
+.addForm input[type=date], .editForm input[type=date] {
+    margin-left: 10px;
+    height: 1.5rem;
+    font-size: 1.2rem;
+}
+
+/* .addForm input[type=submit], .editForm input[type=submit] {
+    background-color: #009b1a;
+} */
+
+.addForm label, .editForm label {
+    font-size: 1.2rem;
+}
+
+.developerNames{
+    display: grid;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    row-gap: 0.3rem;
+    justify-content: center;
+}
+
+.addForm, .editForm{
+    display: grid;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    row-gap: 0.3rem;
+    justify-content: center;
+}
+
+.btnDiv{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 0.5rem;
+}
+

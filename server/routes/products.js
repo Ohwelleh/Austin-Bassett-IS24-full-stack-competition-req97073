@@ -35,9 +35,9 @@ const productRoutes = (app, fs) =>{
                 productId: req.body.productId,
                 productName: req.body.productName,
                 productOwnerName: req.body.productOwnerName,
-                Developers: req.body.Developers.filter(item => item),
+                Developers: req.body.Developers,
                 scrumMasterName: req.body.scrumMasterName,
-                startDate: req.body.startDate,
+                startDate: req.body.startDate.replace(/-/g, "/"),
                 methodology: req.body.methodology
             }
 
@@ -60,7 +60,7 @@ const productRoutes = (app, fs) =>{
                 productId: req.body.productId,
                 productName: req.body.productName,
                 productOwnerName: req.body.productOwnerName,
-                Developers: req.body.Developers.filter(item => item),
+                Developers: req.body.Developers,
                 scrumMasterName: req.body.scrumMasterName,
                 startDate: req.body.startDate,
                 methodology: req.body.methodology

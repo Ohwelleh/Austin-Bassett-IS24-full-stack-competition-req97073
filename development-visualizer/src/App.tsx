@@ -4,12 +4,10 @@ import { IEntry, IFormInfo } from './assets/Interfaces'
 
 // Styling
 import './styling/App.css'
-import Data from './assets/MockData.json'
 
 // Components
 import TableView from './components/TableView'
-import SearchBar from './components/SearchBar'
-import TotalAdd from './components/TotalAdd'
+import TASBar from './components/TASBar'
 import ProductForm from './components/ProductForm'
 
 // String array for table column headers.
@@ -49,15 +47,14 @@ function App() {
 
   return (
     <div>
-      {formInfo.visible && <ProductForm formSettingInfo={setFormInfo} formData={formInfo} productInfo={changeProductData}/>}
-      {!formInfo.visible && <section className='landing-title'>
+      {formInfo.visible && <ProductForm formSettingInfo={setFormInfo} formData={formInfo} productInfo={changeProductData} updateEntries={entries}/>}
+      <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>
-      </section>}
-     {!formInfo.visible && <SearchBar searchArray={setSearches} completeData={entries} />}
-      {!formInfo.visible && <section>
-        <TotalAdd searchResults={search} completeData={entries} formSettingInfo={setFormInfo} productSetInfo={setNewProductData}/>
-        <TableView tableHeader={TableHeaders} tableData={search} formSettingInfo={setFormInfo} productSetInfo={setNewProductData}/>
-      </section>}
+      </section>
+      <section>
+        <TASBar searchResults={search} completeData={entries} formSettingInfo={setFormInfo} productSetInfo={setNewProductData} searchArray={setSearches}/>
+        <TableView tableHeader={TableHeaders} tableData={search} formSettingInfo={setFormInfo} productSetInfo={setNewProductData} />
+      </section>
     </div>
   )
 }

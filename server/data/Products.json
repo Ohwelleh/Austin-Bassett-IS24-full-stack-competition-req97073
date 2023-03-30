@@ -1,7 +1,7 @@
 [
   {
     "productId": 1,
-    "productName": "Data Product 1",
+    "productName": "Data Product 1 asdas ",
     "productOwnerName": "Dave Checker",
     "Developers": [
       "Celsus Juliana",
@@ -17,7 +17,7 @@
   {
     "productId": 2,
     "productName": "Data Testing",
-    "productOwnerName": "Dave Checkewr",
+    "productOwnerName": "Wayland Evangelista",
     "Developers": [
       "Albin Eurpraxia",
       "Tyche Mirabelle",
@@ -35,9 +35,10 @@
     "productOwnerName": "Dave Checkewr",
     "Developers": [
       "Albin Smith",
-      "Coraline Mirabelle"
+      "Coraline Mirabelle",
+      "OctoMan"
     ],
-    "scrumMasterName": "Mark Smith",
+    "scrumMasterName": "Wayland Evangelista",
     "startDate": "2023/02/24",
     "methodology": "Agile"
   },
@@ -49,7 +50,7 @@
       "Albin Smith",
       "Becky"
     ],
-    "scrumMasterName": "Patrick",
+    "scrumMasterName": "Patrickwew",
     "startDate": "2023/03/24",
     "methodology": "Agile"
   }
