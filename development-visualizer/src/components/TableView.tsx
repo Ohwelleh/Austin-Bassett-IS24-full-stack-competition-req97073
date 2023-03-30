@@ -43,7 +43,7 @@ function TableView({tableHeader, tableData, formSettingInfo, productSetInfo}: {t
                         <td className='modifyBTNS'>
                             <div className='CTAbtns'>
                                 <DeleteProduct selectedProduct={dataInfo} />
-                                <button className='editBTN goodBTN' key={dataInfo.productId} onClick={() => handleOnClick(formSettingInfo, productSetInfo, dataInfo)}>E</button>
+                                <button className='editBTN goodBTN' key={dataInfo.productId} onClick={() => handleOnClick(formSettingInfo, productSetInfo, dataInfo)}>Edit</button>
                             </div>
                         </td>
                     </tr>

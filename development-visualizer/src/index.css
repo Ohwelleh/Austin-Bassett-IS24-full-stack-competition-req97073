@@ -46,6 +46,7 @@ button, .goodBTN, .badBTN {
   transition: border-color 0.25s;
 }
 
+
 .goodBTN{
   background-color: #009b1a;
 }

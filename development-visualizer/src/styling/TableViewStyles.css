@@ -11,6 +11,11 @@ th{
     column-gap: 3px;
 }
 
+.editBTN{
+    padding-left: 0em !important;
+    padding-right: 0em !important;
+}
+
 .tableRows{
     height: 4rem;
 }

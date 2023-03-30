@@ -1,4 +1,5 @@
 import { IEntry } from "../assets/Interfaces"
+import '../styling/DeleteProductStyles.css'
 
 
 function DeleteProduct({selectedProduct}: {selectedProduct: IEntry}){
@@ -12,7 +13,7 @@ function DeleteProduct({selectedProduct}: {selectedProduct: IEntry}){
     }
 
     return(
-        <button className='deleteBTN badBTN' onClick={() => deleteProduct(selectedProduct)}>D</button>
+        <button className='deleteBTN badBTN' onClick={() => deleteProduct(selectedProduct)}>Delete</button>
     )
 }
 
