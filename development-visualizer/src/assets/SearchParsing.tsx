@@ -17,8 +17,8 @@ export function findName(searchName: string, rawData: IEntry[]){
 
     var re = new RegExp(searchName, "gi")
 
-    let scrumMasterResults: IEntry[] = rawData
-    .filter((entryScrumName) => re.test(entryScrumName.scrumMasterName) || checkArray(entryScrumName.Developers, re))
+    let searchScrumNameResults: IEntry[] = rawData
+    .filter((entrySearchName) => re.test(entrySearchName.scrumMasterName))
     .map(({productId, productName, productOwnerName, Developers, scrumMasterName, startDate, methodology}) => ({
         productId: productId,
         productName: productName,
@@ -29,5 +29,32 @@ export function findName(searchName: string, rawData: IEntry[]){
         methodology: methodology
     }))
 
-    return scrumMasterResults
+    let searchDevelopersNameResult: IEntry[] = rawData
+    .filter((entrySearchName) => checkArray(entrySearchName.Developers, re))
+    .map(({productId, productName, productOwnerName, Developers, scrumMasterName, startDate, methodology}) => ({
+        productId: productId,
+        productName: productName,
+        productOwnerName: productOwnerName,
+        Developers: Developers,
+        scrumMasterName: scrumMasterName,
+        startDate: startDate,
+        methodology: methodology
+    }))
+
+    let searchOwnerNameResult: IEntry[] = rawData
+    .filter((entrySearchName) => re.test(entrySearchName.productOwnerName))
+    .map(({productId, productName, productOwnerName, Developers, scrumMasterName, startDate, methodology}) => ({
+        productId: productId,
+        productName: productName,
+        productOwnerName: productOwnerName,
+        Developers: Developers,
+        scrumMasterName: scrumMasterName,
+        startDate: startDate,
+        methodology: methodology
+    }))
+
+    if(searchDevelopersNameResult.length === 0 && searchScrumNameResults.length === 0) return []
+    
+
+    return [...searchScrumNameResults, ...searchDevelopersNameResult, ...searchOwnerNameResult]
 }
