@@ -42,6 +42,10 @@ const productRoutes = (app, fs) =>{
             }
 
             const dataObj = JSON.parse(data)
+            
+            let checkExistence = dataConv.findIndex(id => id.productId === Number(req.body.productId))
+            if(checkExistence === -1){res.status(409).send(`Product already exists.`)}
+
             dataObj.push(newProduct)
             
             fs.writeFile(dataPath, JSON.stringify(dataObj, null, 2), 'utf8', () =>{
@@ -54,7 +58,7 @@ const productRoutes = (app, fs) =>{
     app.put('/api/products/update/:prodID', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
 
-            if(err){ res.status(404).send('Starting Error: Not Found')}
+            if(err){ res.status(404).send('Not Found')}
 
             let modifiedProduct = {
                 productId: req.body.productId,
@@ -71,6 +75,9 @@ const productRoutes = (app, fs) =>{
 
             let findPID = Number(req.body.productId)
             let productIndex = dataConv.findIndex(id => id.productId === findPID)
+
+            if(productIndex === -1){res.status(404).send('Product Not Found')} 
+
             newData[productIndex] = modifiedProduct
             
             fs.writeFile(dataPath, JSON.stringify(newData, null, 2), 'utf8', () =>{
