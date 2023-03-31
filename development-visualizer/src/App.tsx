@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { IEntry, IFormInfo } from './assets/Interfaces'
 
 
-// Styling
+// Styling.
 import './styling/App.css'
 
-// Components
+// Components.
 import TableView from './components/TableView'
 import TASBar from './components/TASBar'
 import ProductForm from './components/ProductForm'
@@ -13,6 +13,7 @@ import ProductForm from './components/ProductForm'
 // String array for table column headers.
 const TableHeaders = ["Product Name", "Owner", "Developers", "Scrum Master", "Start Date", "Methodology"]
 
+// Initial state to set the form useState.
 const initialForm: IFormInfo ={
   visible: false,
   editOrAdd: "edit"
@@ -20,18 +21,26 @@ const initialForm: IFormInfo ={
 
 function App() {
 
-  const [entries, setEntries] = useState<IEntry[] | []>([])
-  const [search, setSearches] = useState<IEntry[]>([])
-  const [formInfo, setFormInfo] = useState<IFormInfo>(initialForm)
-  const [changeProductData, setNewProductData] = useState<IEntry | undefined>(undefined)
+  // useStates.
+  const [entries, setEntries] = useState<IEntry[] | []>([]) // Tracking the entire list of Products.
+  const [search, setSearches] = useState<IEntry[]>([]) // Tracking the results when a user searches for a Scrum Master or Developer.
+  const [formInfo, setFormInfo] = useState<IFormInfo>(initialForm) // Tracking whether the Add/Edit Form should be visible.
+  const [changeProductData, setNewProductData] = useState<IEntry | undefined>(undefined) // Tracking the modified/newly created product.
 
+  // This useEffect fetches all the products from the endpoint, and sets the search and entries states to
+  // the fetched data. This occurs whenever the page is reloaded or the length of entires is changed. 
   useEffect(() =>{
     async function getProducts(){
+      
       const response = await fetch('http://localhost:3000/api/products')
+      
       if(!response.ok){
+      
         const message = `An error occured ${response.statusText}`
         window.alert(message)
+      
         return
+      
       }
 
       const productJSON = await response.json()
@@ -47,6 +56,7 @@ function App() {
 
   return (
     <div>
+      {/* Conditionally loading the ProductForm */}
       {formInfo.visible && <ProductForm formSettingInfo={setFormInfo} formData={formInfo} productInfo={changeProductData} updateEntries={entries}/>}
       <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>

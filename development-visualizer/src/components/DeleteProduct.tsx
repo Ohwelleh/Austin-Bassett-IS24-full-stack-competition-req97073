@@ -1,4 +1,6 @@
 import { IEntry } from "../assets/Interfaces"
+
+// Styling.
 import '../styling/DeleteProductStyles.css'
 
 

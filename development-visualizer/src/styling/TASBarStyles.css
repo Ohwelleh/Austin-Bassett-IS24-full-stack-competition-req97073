@@ -17,6 +17,11 @@
     font-size: 1.5rem;
 }
 
+input[type=search]:focus::-webkit-input-placeholder { color:transparent; }
+input[type=search]:focus:-moz-placeholder { color:transparent; } /* Firefox 18- */
+input[type=search]:focus::-moz-placeholder { color:transparent; } /* Firefox 19+ */
+input[type=search]:focus:-ms-input-placeholder { color:transparent; }
+
 .add-div{
     display: flex;
     align-items: center;
