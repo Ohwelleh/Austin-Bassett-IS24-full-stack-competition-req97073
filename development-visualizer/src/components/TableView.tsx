@@ -38,10 +38,10 @@ function TableView({tableHeader, tableData, formSettingInfo, productSetInfo}: {t
                 </thead>
                 <tbody>
                 {tableData.map ((dataInfo, index) =>(
-                    <tr className='tableRows' key={dataInfo.productId}>
+                    <tr className='tableRows' key={index}>
                         <td className='dataCol'>{dataInfo.productName}</td>
                         <td className='dataCol'>{dataInfo.productOwnerName}</td >
-                        <td className='dataCol'>{dataInfo.Developers.join(', ')}</td> {/*The .join(', ') converts the array into a string like so: Dev1, Dev2, Dev3, Dev4, Dev5*/}
+                        <td className='dataCol'>{dataInfo.Developers.join(', ')}</td>{/*The .join(', ') converts the array into a string like so: Dev1, Dev2, Dev3, Dev4, Dev5*/}
                         <td className='dataCol'>{dataInfo.scrumMasterName}</td>
                         <td className='dataCol'>{dataInfo.startDate}</td>
                         <td className='dataCol'>{dataInfo.methodology}</td>

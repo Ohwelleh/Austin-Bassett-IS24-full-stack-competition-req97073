@@ -19,6 +19,7 @@ const initialForm: IFormInfo ={
   editOrAdd: "edit"
 }
 
+
 function App() {
 
   // useStates.
@@ -31,22 +32,25 @@ function App() {
   // the fetched data. This occurs whenever the page is reloaded or the length of entires is changed. 
   useEffect(() =>{
     async function getProducts(){
-      
-      const response = await fetch('http://localhost:3000/api/products')
-      
-      if(!response.ok){
-      
-        const message = `An error occured ${response.statusText}`
-        window.alert(message)
-      
-        return
-      
+      try{
+        const response = await fetch('http://localhost:3000/api/products')
+        
+        if(!response.ok){
+        
+          const message = `An error occured ${response.statusText}`
+          window.alert(message)
+        
+          return
+        
+        }
+
+        const productJSON = await response.json()
+        setEntries(productJSON)
+        setSearches(productJSON)
+
+      }catch(err){
+        console.error("[Fetch Error:", err)
       }
-
-      const productJSON = await response.json()
-      setEntries(productJSON)
-      setSearches(productJSON)
-
     }
 
       getProducts()
@@ -54,12 +58,14 @@ function App() {
 
   }, [entries.length])
 
+
   return (
     <div>
       {/* Conditionally loading the ProductForm */}
       {formInfo.visible && <ProductForm formSettingInfo={setFormInfo} formData={formInfo} productInfo={changeProductData} updateEntries={entries}/>}
       <section className='landing-title'>
         <h1>IMB Development/Maintainance Visualizer</h1>
+        {/* <button onClick={() => randomizData()} >Randomized Dataset</button> */}
       </section>
       <section>
         <TASBar searchResults={search} completeData={entries} formSettingInfo={setFormInfo} productSetInfo={setNewProductData} searchArray={setSearches}/>

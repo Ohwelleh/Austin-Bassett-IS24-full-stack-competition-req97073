@@ -1,6 +1,9 @@
+const { randomUUID } = require('crypto')
+
 const productRoutes = (app, fs) =>{
     const dataPath = './data/Products.json'
 
+    // GET: Returns the entire list of Products.
     app.get('/api/products', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
             if(err){ res.status(404).send('Not Found')}
@@ -8,31 +11,29 @@ const productRoutes = (app, fs) =>{
         })
     })
 
+    // GET: Returns the product with the specified prodID.
     app.get('/api/products/:prodID', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
 
             if(err){ res.status(404).send('Not Found')}
-
-            const products = new Map()
             const dataConv = JSON.parse(data)
+            const newData = [...dataConv]
 
-            for(entry of dataConv){
-                products.set(Number(entry.productId), entry)
-            }
+            let findPID = req.params['prodID']
+            let productIndex = dataConv.findIndex(id => id.productId === findPID)
 
-            const results = products.get(Number(req.params['prodID']))
-
-            if(results === undefined){res.status(404).send('Not Found')}
+            if(productIndex === -1){res.status(404).send('Not Found')}
             
-            res.send(results)
+            res.send(newData[productIndex])
         })
     })
     
+    // POST: Add new product to JSON.
     app.post('/api/products/add', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
             
             let newProduct = {
-                productId: req.body.productId,
+                productId: randomUUID(),
                 productName: req.body.productName,
                 productOwnerName: req.body.productOwnerName,
                 Developers: req.body.Developers,
@@ -43,8 +44,8 @@ const productRoutes = (app, fs) =>{
 
             const dataObj = JSON.parse(data)
             
-            let checkExistence = dataConv.findIndex(id => id.productId === Number(req.body.productId))
-            if(checkExistence === -1){res.status(409).send(`Product already exists.`)}
+            let checkExistence = dataObj.findIndex(id => id.productId === req.body.productId)
+            if(checkExistence !== -1){res.status(409).send(`Product already exists.`)}
 
             dataObj.push(newProduct)
             
@@ -55,6 +56,7 @@ const productRoutes = (app, fs) =>{
         })
     })
 
+    // PUT: Update an existing product.
     app.put('/api/products/update/:prodID', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
 
@@ -73,7 +75,7 @@ const productRoutes = (app, fs) =>{
             const dataConv = JSON.parse(data)
             const newData = [...dataConv]
 
-            let findPID = Number(req.body.productId)
+            let findPID = req.body.productId
             let productIndex = dataConv.findIndex(id => id.productId === findPID)
 
             if(productIndex === -1){res.status(404).send('Product Not Found')} 
@@ -87,13 +89,14 @@ const productRoutes = (app, fs) =>{
         })
     })
 
+    // DELETE: Delete the specified product.
     app.delete('/api/products/delete/:prodID', (req, res) =>{
         fs.readFile(dataPath, 'utf8', (err, data) =>{
 
             if(err){ res.status(404).send('Not Found')}
 
             const dataConv = JSON.parse(data)
-            let currentPID = Number(req.params['prodID'])
+            let currentPID = req.params['prodID']
             const newData = dataConv.filter((id) => id.productId !== currentPID)
 
             

@@ -21,7 +21,7 @@ export function findName(searchName: string, rawData: IEntry[]){
     
     if(searchName === "") return rawData
 
-    // Regular expression for finding the passed name, i = case-insensitive; g=global
+    // Regular expression for finding the passed name, i = case-insensitive; g = global, finds all matches instead of stopping at the first one.
     var re = new RegExp(searchName, "gi")
 
     // Creating IEntry of all the products where Scrum Master Name was a match with searchName.

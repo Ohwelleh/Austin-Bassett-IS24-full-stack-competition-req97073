@@ -1,7 +1,9 @@
+// Endpoint for checking the health of the server.
 const healthRoutes = (app) =>{
 
     app.get('/api/health', (req, res) =>{
-       const healthCheck = {
+       
+     const healthCheck = {
             uptime: process.uptime(),
             responseTime: process.hrtime(),
             message: 'OK',
@@ -9,11 +11,15 @@ const healthRoutes = (app) =>{
        }
 
        try{
-            res.status(200).send(healthCheck)
+            
+          res.status(200).send(healthCheck)
+
        }catch(error){
+
             healthCheck.message = error
             res.status(503).send()
-       }
+       
+          }
     })
 
 }
